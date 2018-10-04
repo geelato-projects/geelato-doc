@@ -1,5 +1,5 @@
 module.exports = {
-	dest: 'dist/docs',
+    dest: 'dist/docs',
     locales: {
         '/': {
             lang: 'zh-CN',
@@ -33,8 +33,9 @@ module.exports = {
         lineNumbers: true // 代码块显示行号
     },
     themeConfig: {
-        displayAllHeaders: true, // 显示所有页面的标题链接  默认值：false
-        sidebarDepth: 1, // 若为2，则将同时提取markdown中h2 和 h3 标题，显示在侧边栏上。
+        displayAllHeaders: false, // 显示所有页面的标题链接  默认值：false,
+        activeHeaderLinks: true, // 默认值：true，默认情况下，当用户通过滚动查看页面的不同部分时，嵌套的标题链接和 URL 中的 Hash 值会实时更新
+        sidebarDepth: 1, // 设置成 0 将会禁用标题（headers）链接，同时，最大的深度为 2，它将同时提取 h2 和 h3 标题，显示在侧边栏上。
         lastUpdated: 'Last Updated', // 文档更新时间：每个文件git最后提交的时间
         locales: {
             '/en/': {
@@ -61,6 +62,15 @@ module.exports = {
                 }
             }
         },
+    },
+    plugins: {
+        '@vuepress/i18n-ui': true,
+        '@vuepress/back-to-top': true,
+        '@vuepress/pwa': {
+            serviceWorker: true,
+            updatePopup: true
+        },
+        '@vuepress/plugin-medium-zoom': true
     }
 }
 
@@ -72,8 +82,9 @@ function genSidebarConfig(title) {
             children: [
                 '',
                 'getting-started',
-                'ui/',
-                'backend/',
+                'ui',
+                'backend',
+                'gql',
                 'deploy'
             ]
         }
