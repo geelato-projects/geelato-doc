@@ -12,15 +12,18 @@
 ``` javascript
 {
     type: 'object',
-    defaultEntity: 'platformUser', // 表单可绑定多实体，这是默认第一实体
+    // 表单可绑定多实体，这是默认第一实体
+    defaultEntity: 'platformUser',
     properties: {
         name: {
             control: 'input',
             title: '名称',
-            placehoder: '名称',
-            disabled: false, // 是否禁用
-            readonly: false, // 是否只读
-            hidden: false, // 是否隐藏
+            // 是否禁用
+            disabled: true,
+            // 是否只读
+            readonly: false,
+            // 是否隐藏
+            hidden: false,
         },
         loginName: {
             control: 'input',
@@ -60,25 +63,31 @@
         email: {
             control: 'email',
             title: '邮箱',
+            placeholder: 'xxx@xxx.xxx',
         },
         age: {
             control: 'input',
             title: '年龄',
+            // 值
+            value: '20',
         },
         sex: {
             control: 'dropdown',
             title: '性别',
-            //---专有属性
-            options: [
+            // 若数据是动态生产成，可配置ds，基于ds加载的数据最终会设置到data中
+            data: [
+                {text: '保密', value: ''},
                 {text: '男', value: 'male'},
                 {text: '女', value: 'female'}
             ],
+            value: ''
         },
         tel: {
             control: 'input',
             title: '电话',
             field: 'telephone',
-            entity: 'platformUser', // 若字段需绑定其它实体，该通过该属性设置
+            // 若字段需绑定其它实体，该通过该属性设置
+            entity: 'platformUser',
             placeholder: '电话号码',
             rules: [
                 {
@@ -90,23 +99,20 @@
         province: {
             control: 'dropdown',
             title: '省份',
-            options: [
-                {text: '男', value: 'male'},
-                {text: '女', value: 'female'}
-            ],
+            ds: 'province',
+            // 广东省
+            value: '440000'
         },
         city: {
             control: 'dropdown',
             title: '城市',
-            options: [
-                {text: '男', value: 'male'},
-                {text: '女', value: 'female'}
-            ],
+            // 基于数据源，数源名称可自取，如cityDS，不一定需等于本属性名
             ds: 'city'
         },
         enable: {
             control: 'checkbox',
-            title: '启用'
+            title: '启用',
+            value: true
         },
         description: {
             control: 'textarea',
@@ -120,47 +126,49 @@
             [{name: [4, 8]}, {loginName: [4, 8]}],
             [{email: [4, 8]}, {age: [4, 8]}],
             [{sex: [4, 8]}, {tel: [4, 8]}],
+            [{province: [4, 8]}, {city: [4, 8]}],
             [{password: [4, 8]}, {confirmPassword: [4, 8]}],
-            [{enable: [4, 8]}, {$null: [4, 8]}],
+            [{enable: [4, 8]}, {'': [4, 8]}],
             [{description: [4, 20]}]
         ]
     },
     ds: {
         province: {
-            entity: 'basedata_province',
-            lazy: true, // default false
-            alias: {
-                text: 'name',
-                value: 'id'
-            },
+            entity: 'platform_province',
+            // default false
+            lazy: false,
+            // 支持字段重命名
+            fields: 'name text,code value',
             description:'这是一个拉列表数据源'
         },
         city: {
-            entity: 'basedata_city',
-            lazy: true, // default false
-            alias: {
-                text: 'name',
-                value: 'id'
-            },
-            where: {
-                provinceId: 'gs:$form.province'
+            entity: 'platform_city',
+            lazy: true,
+            fields: 'name text,code value',
+            // 带参数查询的数据源
+            params: {
+                // 该信息会自动加入计算属性中，当province的值变动时，该数据源会重新加载计算
+                provinceCode: 'gs:$ctx.form.province'
             },
             description:'这是一个拉列表数据源，带参数'
         }
     },
-    const:{
-        tilte:'这是一个常量，常量名字为title'
+    vars: {
+        myVarA: {
+            description:'这是一个变量，常量名字为myVarA，值为30',
+            value:'30'
+        }
     }
 }
 ```
 
 #### gs表达式
   gs表达式，可引用解析上下变量信息，从而达到动态灵活控制表单的目的，变量如下：
-- $form  上下文，包括当前表单的属性信息
-- $user  当前登录用户信息
-- $const 表单的常量信息
-- $null  用于layout渲染为空标题
-
+- $ctx          当前表单执行的上下文
+- $ctx.form     当前表单的属性信息，对于配置中的properties
+- $ctx.profile  当前登录用户信息、组织信息、角色信息（未支持）
+- $ctx.vars     当前表单的变量信息，对于配置中的vars
+  如：$ctx.form.province即表示获取from中名为province的字段值
 
 #### 表单验证
 参见 [Semantic UI Form Validation](https://semantic-ui.com/behaviors/form.html)

@@ -6,7 +6,7 @@
 ​	先来一个简单示例，查询用户信息
 
 ``` javascript
-{"platform_user":{                          // 请求一个名为sys_user的实体
+{"platform_user":{                          // 请求一个名为platform_user的实体
       "@p":"0,1"                       // 有这个参数，则表示分页数据组,没有则表示查询单个
       "sex":"0",                       // 等值条件
 	  "age|gt":"20",                   // “|”表示过滤，gt即表示大于
@@ -21,7 +21,7 @@
 ​	经解析之后的sql语句如下：
 
 ``` sql
--- 服务端解析实体sys_user为对应的表或视图,本例中实体sys_user对应的表名也为sys_user
+-- 服务端解析实体platform_user为对应的表或视图,本例中实体platform_user对应的表名也为platform_user
 select id,name,age from platform_user where sex=0 and age>20 and name like '%张' and id in(1,2,3) order by age asc,name desc
 ```
 
@@ -78,7 +78,7 @@ select id,name,age from platform_user where sex=0 and age>20 and name like '%张
 
   @w    [可选]where的简写，更高级的查询语句片段，暂不支持
 **$ 指变量**，查询的字段变量
-**~ 指子查询**
+**~ 指子查询或子实体**，用于查询是子查询，用于保存则是子实体信息
 
 2. **|过滤**
 
@@ -122,7 +122,7 @@ as 别名，格式name as alias，例如agesum:age|sum表示将求和的列名�
 示例
 
 ``` javascript
-{"sys_user":{                           //请求一个名为User的实体（Table或视图）
+{"platform_user":{                           //请求一个名为User的实体（Table或视图）
       "@p":"0,1"                       //有这个参数，则表示分页数据组,没有则表示查询单个
       "sex":"0",                       //等值条件
 	  "age|gt":"20",                   //c即compare，表示大于、小于、等于...
@@ -133,7 +133,7 @@ as 别名，格式name as alias，例如agesum:age|sum表示将求和的列名�
 	  "@w":"sex=0",                    //更高级的查询语句片段
 	  "@key":"USER8900"                 //在客户端发请求前自动生成，用于服务端解析缓存的key
 	  "~Moment":{
-		  "userId":"$../sys_user.id"          //缺省依赖路径，从同级Object的路径开始
+		  "userId":"$../platform_user.id"          //缺省依赖路径，从同级Object的路径开始
 		  "@fs":"id,userId,maxId|max id",     //结合下方的分组|g，取同组userId，Id的最大值|max，重命名为maxId
 		  "@group":"userId"                //按userId分组(多个字段分组用逗号分隔userId,xx)
 		  "@having":"maxId|gt:100,"
@@ -163,14 +163,29 @@ HAVING SUM(OrderPrice)>1500
 新增、修改信息
 
 ```javascript
-{"sys_user":{
-	"name":"张三",
-	"loginName":"z3",
-	"password":"123456",
-	"~sys_product[]":[{
-		"name":"$../sys_user.id"
-	}]
-}}
+{
+    // 业务代码，用于在后端做业务规则检查用，暂未实现
+    "@biz":"myBizCode",
+    "platform_user":{
+    	"name":"张三",
+    	"loginName":"z3",
+    	"password":"123456",
+    	"email":geelato@geelato.org,
+    	"age":18,
+    	// 字典信息采用有直观含义的字符串信息来表示具体的值
+    	"sex":"male",
+    	"tel":"19999999999",
+    	"province":"440000",
+    	"city":"440100",
+    	// enable 等boolean值，采用数值存储，在保存前需转换
+    	"enable":"1",
+    	"description":"",
+    	"#platform_demo_entity":{
+    	    "code":"$parent.province",
+    		"name":"$parent.name"
+    	}
+    }
+}
 
 {
 	'@biz':'xxxxx',
@@ -180,7 +195,7 @@ HAVING SUM(OrderPrice)>1500
 	}
 }
 ```
-
+注意：实体之间的数据存在依赖关系时，JSON结构上体现为父子节点的关系，子节点只能依赖父节点及以上节点的数据，不能依赖父节点兄弟节点的数据，所以变量只有$parent，只能上向引用。
 
 ## 安全
 
