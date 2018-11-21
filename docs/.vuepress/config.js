@@ -85,7 +85,8 @@ function genSidebarConfig(title) {
                 'ui',
                 'backend',
                 'gql',
-                'deploy'
+                'deploy',
+                'question'
             ]
         }
     ]
