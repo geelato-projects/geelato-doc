@@ -1,5 +1,5 @@
 # 介绍
-Geelato基于Vue2、SemanticUI、SpringBoot的全栈式开发框架，帮助你更愉快地、有创意地开发，那感觉就如吃了gelato一样。
+Geelato基于Vue2、SemanticUI、SpringBoot的全栈式开发框架，帮助你更愉快地、有创意地开发。
 
 ## 特性
 + 内置后台管理主题，采用响应式布局

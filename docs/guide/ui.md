@@ -233,7 +233,91 @@ Building assets
 两种方式，一种是基于webpack dependencies的方式加载到node_modules中，另一种方式是基于vue-cli3的插件机制，将插件以源代码的方式加载到工程的src目录。
 
 ## 组件
-### 表单
+
+### 组件公共方法
+
+每个组件都有如下的方法
+
+##### validate
+
+验证该组件的数据是否正确，若组件无需验证，则返回 {code:0,isSuccess:true,result:{}}
+
+``` javascript
+// 例如
+validate() {
+    this.initUI()
+    let result = $(this.$el).form('validate form')
+    let isSuccess = result.get(0).className.indexOf('error') === -1
+    return {code: isSuccess ? 0 : -1, isSuccess: isSuccess, result: result}
+}
+```
+
+##### reset
+
+重置组件状态，在reset内转换处理数据、绑定事件等
+
+``` javascript
+// 例如
+reset(opts = this.opts) {
+    if (opts) {
+        let options = opts
+        this.properties = options.properties
+        this.layout = options.layout
+        this.defaultEntity = options.defaultEntity
+        this.ds = options.ds
+        this.vars = options.vars
+        this.dsBeDependentOn = {}
+        this.form = {}
+        this.init = false
+    }
+    this.initConvertData()
+    this.loadInitData()
+    this.initUI()
+}
+```
+
+
+
+##### getValues
+
+获取组件值
+
+```javascript
+// 例如
+getValues() {
+	return this.form
+}
+```
+
+##### setValues
+
+设置组件值
+
+``` javascript
+// 例如
+setValues(form) {
+    for (let key in form) {
+        this.$set(this.form, key, form[key])
+    }
+    this.$nextTick()
+}
+```
+
+##### getGql
+
+获取保存操作的gql
+
+``` javascript
+getGql() {
+    ...
+}
+```
+
+
+
+
+
+### 表单(gl-form-base)
 基于json格式渲染的表单，格式如下：
 ``` javascript
 {
@@ -398,3 +482,44 @@ Building assets
 
 #### 表单验证
 参见 [Semantic UI Form Validation](https://semantic-ui.com/behaviors/form.html)
+
+
+### 工具条(gl-toolbar)
+
+``` javascript
+ {
+  title: '',
+  // 是否自动合并到父组件中，如在modal中打开时，工具条自动合并到modal的工具栏
+  appendToParent: true,
+  actions: [
+    {
+      title: '创建',
+      color: "primary",
+      click: 'modal',
+      modal: {
+        title: '模块信息',
+        type: 'staticPage',
+        value: '/components/gl-form-combination/Index.vue',
+        opts: formConfig.opts
+      }
+    },
+    {title: '删除', color: "primary", click: 'deleteMulti', confirm: '确定删除？'}
+  ],
+  dropdown: {
+    title: '',
+    actions: [
+      {
+        title: '创建',
+        click: 'modal',
+        modal: {
+          title: '模块信息',
+          type: 'staticPage',
+          value: '/components/gl-form-combination/Index.vue',
+          opts: formConfig.opts
+        }
+      },
+      {title: '删除', click: 'deleteMulti', confirm: '确定删除？'}
+    ]
+  }
+}
+```

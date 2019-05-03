@@ -1,7 +1,7 @@
-# gql
+# GQL
 ## 概述
 
-​	gql是基于元数据的动态查询语句，查询对像为实体（实体对应物理表或视图），gql即geelato query language。gql采用json格式，并通过key、value的特殊字符关键字，表示查询字段、查询条件等信息，最终由gql解析器转换成对实体的sql语句。
+​	gql是基于元数据的动态查询api，查询对像为实体（实体对应物理表或视图），gql即geelato query language。gql采用json格式，并通过key、value的特殊字符关键字，表示查询字段、查询条件等信息，最终由gql解析器转换成对实体的sql语句。
 
 ​	先来一个简单示例，查询用户信息
 
@@ -117,7 +117,7 @@ as 别名，格式name as alias，例如agesum:age|sum表示将求和的列名�
 * eq("eq"), neq("neq"), lt("lt"), lte("lte"), gt("gt"), gte("gte"), startWith("sw"), endWith("ew"), contains("contains");
 * in 已支持
   **/
-* ​
+* 
 
 示例
 
@@ -145,7 +145,6 @@ as 别名，格式name as alias，例如agesum:age|sum表示将求和的列名�
     }
 }
 ```
-
 
 场景1：涉及关联子表查询，查询返回user列表中带有所属组织的名称列，同时查询条件中，带有组织名称的模糊查询。
 方案：直接查询user视图，视图中带有组织表的组织名称列，简化客户端的规则

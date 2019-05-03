@@ -7,7 +7,7 @@ features:
 - title: Vue
   details: Enjoy development experience of Vue + webpack。
 - title: SemanticUI
-  details: 基于semantic-ui，过40K star，的UI框架
+  details: 基于semantic-ui，过40K star的UI框架
 - title: SpringBoot
   details: 后端。 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
 - title: Gql
