@@ -117,7 +117,7 @@ as 别名，格式name as alias，例如agesum:age|sum表示将求和的列名�
 * eq("eq"), neq("neq"), lt("lt"), lte("lte"), gt("gt"), gte("gte"), startWith("sw"), endWith("ew"), contains("contains");
 * in 已支持
   **/
-* 
+*
 
 示例
 
@@ -202,8 +202,3 @@ HAVING SUM(OrderPrice)>1500
 服务端定义哪些字段可以模糊查询条件，哪些字段可以作为查询条件。
 服务端定义哪些字段有权限可以查询出来，即限制@fs。
 
-## 性能
-
-为提高性能，服务端默认不自动去空
-第一个字符是否为@,是的话则获取指令handler
-检查“|”后的关键字是否支持

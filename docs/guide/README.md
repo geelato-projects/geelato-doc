@@ -1,10 +1,10 @@
 # 介绍
-Geelato基于Vue2、SemanticUI、SpringBoot的全栈式开发框架，帮助你更愉快地、有创意地开发。
+Geelato基于Vue2、Ant Design、SpringBoot的全栈式开发框架，帮助你更愉快地、有创意地开发。
 
 ## 特性
 + 内置后台管理主题，采用响应式布局
 + 插件式的管理机制，模块化管理
-+ 页面设计器+元数据+Gql组合
++ 页面设计器+元数据+GQL组合
 
 
 ## 规划
