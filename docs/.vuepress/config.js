@@ -37,7 +37,7 @@ module.exports = {
     // 显示所有页面的标题链接  默认值：false,
     displayAllHeaders: false,
     // 默认值：true，默认情况下，当用户通过滚动查看页面的不同部分时，嵌套的标题链接和 URL 中的 Hash 值会实时更新
-    // activeHeaderLinks: true,
+    activeHeaderLinks: true,
     // 设置成 0 将会禁用标题（headers）链接，同时，最大的深度为 2，它将同时提取 h2 和 h3 标题，显示在侧边栏上。
     sidebarDepth: 1,
     // 文档更新时间：每个文件git最后提交的时间
@@ -65,7 +65,7 @@ module.exports = {
           {text: 'Index', link: '/'},
           {text: 'Guide', link: '/guide/'},
           {text: 'Config Reference', link: '/config/'},
-          {text: 'Github', link: 'https://github.com/geelato-projects'},
+          // {text: 'Github', link: 'https://github.com/geelato-projects'},
         ],
         sidebar: {
           '/guide/': genSidebarConfig('Guide')
@@ -77,7 +77,7 @@ module.exports = {
           {text: '指南', link: '/guide/'},
           {text: '配置', link: '/config/'},
           {text: '演示', link: '/showcase/'},
-          {text: 'Github', link: 'https://github.com/geelato-projects'},
+          // {text: 'Github', link: 'https://github.com/geelato-projects'},
         ],
         sidebar: {
           '/guide/': genSidebarConfig('指南')
