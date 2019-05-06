@@ -37,7 +37,7 @@ module.exports = {
     // 显示所有页面的标题链接  默认值：false,
     displayAllHeaders: false,
     // 默认值：true，默认情况下，当用户通过滚动查看页面的不同部分时，嵌套的标题链接和 URL 中的 Hash 值会实时更新
-    activeHeaderLinks: true,
+    // activeHeaderLinks: true,
     // 设置成 0 将会禁用标题（headers）链接，同时，最大的深度为 2，它将同时提取 h2 和 h3 标题，显示在侧边栏上。
     sidebarDepth: 1,
     // 文档更新时间：每个文件git最后提交的时间
@@ -46,13 +46,13 @@ module.exports = {
     repo: 'geelato-projects/geelato-doc',
     // 自定义仓库链接文字。默认从 `themeConfig.repo` 中自动推断为
     // "GitHub"/"GitLab"/"Bitbucket" 其中之一，或是 "Source"。
-    repoLabel: '查看源码',
+    // repoLabel: '查看源码',
     // 以下为可选的编辑链接选项
 
     // 假如你的文档仓库和项目本身不在一个仓库：
     // docsRepo: 'vuejs/vuepress',
     // 假如文档不是放在仓库的根目录下：
-    // docsDir: 'docs',
+    docsDir: 'docs',
     // 假如文档放在一个特定的分支下：
     // docsBranch: 'master',
     // 默认是 false, 设置为 true 来启用
