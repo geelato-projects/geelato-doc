@@ -9,7 +9,7 @@ features:
 - title: 丰富的组件
   details: 基于Ant Design，提炼自企业级中后台产品的交互语言和视觉风格，开箱即用的高质量 Vue 组件，灵活可扩展。
 - title: 极少的代码
-  details: 基于元数据管理，采用自研的GQL查询，少量代码即可以实现丰富的功能。
+  details: 基于元数据管理，采用自研的GQL查询，配合表单组件、列表组件，少量代码即可以实现丰富的功能。
 
 footer: Copyright © geelato.org
 ---
