@@ -40,7 +40,7 @@ Geelato 仍然处于开发中，这里有一些目前还不支持、但已经在
  - geelato-aui
    基于Vue Ant Design的前端UI组件，包括页面表单、列表、树列表等，可快速实现增删改查。
  - geelato-aui-admin
-   基于geelato-au的后台管理。
+   基于geelato-au的后台管理脚手架，见演示栏目。
 
 ### 后端工程
  - geelato-parent

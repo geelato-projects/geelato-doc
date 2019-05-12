@@ -8,4 +8,4 @@ Ant Design
 
 ## 组件
 提供了页面级组件gl-form、gl-table、gl-tab等，快速实现增删改查，是低代码开发模式的基础。
-组件库参见 [Geelato-Aui](https://www.geelato.org/ui/index.html)
+组件库参见 [Geelato-UI](https://ui.geelato.org)
