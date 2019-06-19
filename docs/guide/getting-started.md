@@ -12,7 +12,7 @@
  - [创建一个项目](https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create)
  - 加载geelato插件
     @vue/cli-plugin-geelato-ant-admin
-    
+
     ``` bash
     vue add @vue/cli-plugin-geelato-ant-admin
     ```
@@ -49,7 +49,7 @@ D:\myws\geelato-web-quickstart-master\bin>build
 
 #### 运行项目
 
-构建成功，执行run.bat。
+构建成功，执行run.bat。(第一次运行，需执行run_with_db_reset.bat，自动建表、初始化数据)
 
 ```powershell
 D:\myws\geelato-web-quickstart-master\bin>run.bat

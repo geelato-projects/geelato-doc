@@ -41,7 +41,7 @@ module.exports = {
     // 设置成 0 将会禁用标题（headers）链接，同时，最大的深度为 2，它将同时提取 h2 和 h3 标题，显示在侧边栏上。
     sidebarDepth: 1,
     // 文档更新时间：每个文件git最后提交的时间
-    lastUpdated: '上次更新',
+    // lastUpdated: '上次更新',
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
     repo: 'geelato-projects/geelato-doc',
     // 自定义仓库链接文字。默认从 `themeConfig.repo` 中自动推断为
