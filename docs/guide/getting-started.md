@@ -26,13 +26,21 @@
 
 :::
 
-#### 创建数据库
+### 下载项目
 
-创建数据库geelato
+下载项目[geelato-web-quickstart](https://github.com/geelato-projects/geelato-web-quickstart)，假设下载到D:\myws\geelato-web-quickstart-master。
 
-#### 下载并构建项目
+### 创建数据库
 
-下载项目[geelato-web-quickstart](https://github.com/geelato-projects/geelato-web-quickstart)，假设下载到D:\myws\geelato-web-quickstart-master，进入项目目录，执行bin目录下的build.bat。
+创建数据库，建议名称为geelato。
+
+### 修改配置
+
+进入项目目录，打开src\main\resources目录下的[application.properties](https://www.geelato.org/config/)，修改数据库连接信息。
+
+### 构建项目
+
+进入项目目录，执行bin目录下的build.bat。
 
 ```powershell
 Microsoft Windows [Version 10.0.14393]
@@ -47,9 +55,9 @@ D:\myws\geelato-web-quickstart-master>cd bin
 D:\myws\geelato-web-quickstart-master\bin>build
 ```
 
-#### 运行项目
+### 运行项目
 
-构建成功，执行run.bat。(第一次运行，需执行run_with_db_reset.bat，自动建表、初始化数据)
+构建成功，执行run.bat。(**第一次运行需执行run_with_db_reset.bat**进行自动建表并初始化数据)
 
 ```powershell
 D:\myws\geelato-web-quickstart-master\bin>run.bat
